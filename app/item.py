@@ -3,7 +3,7 @@ import psycopg2.extras
 from flask_restful import Resource, reqparse
 from flask_jwt import jwt_required
 
-db = 'dbname=flask_api user=postgres password=Soen@30010010 host=localhost'
+db = "dbname='sendit' user='sindani254' password='Soen@30010010' host='localhost'"
 
 
 class Item(Resource):
@@ -42,7 +42,7 @@ class Item(Resource):
         try:
             query = "SELECT * FROM items where id=%s"
             cursor.execute(query, (id,))
-        except Exception as e:
+        except Exception:
             return {"error msg": "error fetching item details"}, 500
         row = cursor.fetchone()
 
@@ -56,7 +56,7 @@ class Item(Resource):
         try:
             query = "DELETE FROM items where id=%s"
             cursor.execute(query, (id,))
-        except Exception as e:
+        except Exception:
             return {"error msg": "error deleting item"}, 500
 
         connection.commit()
